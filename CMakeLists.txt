@@ -29,7 +29,8 @@ list(APPEND CMAKE_MODULE_PATH "${CMAKE_SOURCE_DIR}/cmake")
 include(UseDoxygenDoc)
 
 # Setzen der QT6-Distro
-set(CMAKE_PREFIX_PATH "E:\\Qt\\6.5.3\\msvc2019_64")
+#set(CMAKE_PREFIX_PATH "E:\\Qt\\6.5.3\\msvc2019_64")
+set(CMAKE_PREFIX_PATH "E:\\Qt\\6.6.0\\msvc2019_64")
 
 # QT6 suchen
 find_package(Qt6 

@@ -8,11 +8,15 @@
  *  @copyright © Niklas Frings, 2024. All right reserved.
  *
  */
-#include <QApplication>
+#include "logging/loggingMessageHandler.h"
+#include "ObservationGuideGenerator.h"
 
 int main(int argc, char* argv[])
 {
-	QApplication app(argc, argv);
+	// Override the default Qt-debug-message-handler
+	qInstallMessageHandler(OGG::LoggingMessageHandler);
+
+	OGG::ObservationGuideGenerator app(argc, argv);
 
 	return app.exec();
 }

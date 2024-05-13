@@ -8,6 +8,10 @@
 
 qt_add_executable(OGG_App
 	src/main.cpp
+
+    src/ObservationGuideGenerator.cpp
+    src/GUI/MainWindow.cpp
+    src/logging/loggingMessageHandler.cpp
 )
 
 # Linker
@@ -26,9 +30,9 @@ target_link_libraries(OGG_App
         #MACOSX_BUNDLE ON
 #)
 
-# Notwendige DLLs kopieren
-add_custom_command(TARGET OGG_App POST_BUILD
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Core> $<TARGET_FILE_DIR:OGG_App>
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Widgets> $<TARGET_FILE_DIR:OGG_App>
-    COMMAND ${CMAKE_COMMAND} -E copy_if_different $<TARGET_FILE:Qt6::Gui> $<TARGET_FILE_DIR:OGG_App>
-)
+# Notwendige DLLs für Windows kopieren
+if(WIN32)
+    # Run winddeployqt if it can be found
+    find_program(WINDEPLOYQT_EXECUTABLE NAMES windeployqt HINTS ${QTDIR} ENV QTDIR PATH_SUFFIXES bin)
+    add_custom_command(TARGET OGG_App POST_BUILD COMMAND ${WINDEPLOYQT_EXECUTABLE} $<TARGET_FILE:OGG_App>)
+endif()
