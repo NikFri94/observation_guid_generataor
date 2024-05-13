@@ -11,6 +11,8 @@ qt_add_executable(OGG_App
 
     src/ObservationGuideGenerator.cpp
     src/GUI/MainWindow.cpp
+    src/GUI/NewFileDialog/NewFileDialog.cpp
+    src/ProjectSystem/Observation.cpp
     src/logging/loggingMessageHandler.cpp
 )
 
@@ -23,12 +25,14 @@ target_link_libraries(OGG_App
 
 #add_dependencies(OGG_App)
 
-# Setzen der Anwendungseigenschaften so, dass kein Konsolenfesnter angezeigt wird
-#set_target_properties(ET2_App
-#    PROPERTIES
-        #WIN32_EXECUTABLE ON
-        #MACOSX_BUNDLE ON
-#)
+if(QGG_DIST)
+    # Setzen der Anwendungseigenschaften so, dass kein Konsolenfesnter angezeigt wird
+    set_target_properties(ET2_App
+        PROPERTIES
+            WIN32_EXECUTABLE ON
+            MACOSX_BUNDLE ON
+    )
+endif()
 
 # Notwendige DLLs für Windows kopieren
 if(WIN32)

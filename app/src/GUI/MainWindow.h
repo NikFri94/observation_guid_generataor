@@ -12,6 +12,10 @@
 
 #include <QMainWindow>
 
+#include "../../res/GUI/ui_MainWindow.h"
+
+#include "NewFileDialog/NewFileDialog.h"
+
 namespace OGG
 {
 	class MainWindow : public QMainWindow
@@ -24,5 +28,11 @@ namespace OGG
 		 * @param parent 
 		*/
 		MainWindow(QWidget* parent = nullptr);
+
+	private slots:
+		void newFile(); //!< Slot for action "New file"
+
+	private:
+		Ui::MainWindow m_MainWindowGUI; //!< UI-Resource for MainWindow
 	};
 }
