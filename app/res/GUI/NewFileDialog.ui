@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>584</width>
+    <width>919</width>
     <height>669</height>
    </rect>
   </property>
@@ -110,12 +110,6 @@
           </item>
           <item>
            <widget class="QTextEdit" name="edMainObjective">
-            <property name="sizePolicy">
-             <sizepolicy hsizetype="MinimumExpanding" vsizetype="MinimumExpanding">
-              <horstretch>0</horstretch>
-              <verstretch>0</verstretch>
-             </sizepolicy>
-            </property>
             <property name="maximumSize">
              <size>
               <width>16777215</width>
@@ -207,17 +201,280 @@
           </item>
          </layout>
         </item>
+       </layout>
+      </widget>
+     </item>
+    </layout>
+   </item>
+   <item>
+    <layout class="QVBoxLayout" name="_2">
+     <item>
+      <widget class="QGroupBox" name="groupBox_3">
+       <property name="title">
+        <string>Allgemeine Beschreibung vor Ort</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_3">
         <item>
-         <widget class="QDialogButtonBox" name="btBox">
-          <property name="standardButtons">
-           <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel</set>
-          </property>
-          <property name="centerButtons">
-           <bool>false</bool>
+         <widget class="QLabel" name="label_7">
+          <property name="text">
+           <string>Systematisierungsansatz</string>
           </property>
          </widget>
         </item>
+        <item>
+         <widget class="QComboBox" name="cbDescriptionSystematic">
+          <item>
+           <property name="text">
+            <string>Unsystematisch</string>
+           </property>
+          </item>
+          <item>
+           <property name="text">
+            <string>TOP</string>
+           </property>
+          </item>
+         </widget>
+        </item>
+        <item>
+         <widget class="QLabel" name="label_8">
+          <property name="text">
+           <string>Beobachtungshinweise</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="edDescription"/>
+        </item>
        </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_4">
+       <property name="title">
+        <string>Optionale Beobachtungsthemen</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_6">
+        <item>
+         <widget class="QTabWidget" name="tabWidget">
+          <property name="currentIndex">
+           <number>3</number>
+          </property>
+          <widget class="QWidget" name="tabCommunication">
+           <attribute name="title">
+            <string>Kommunikation</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_7">
+            <item>
+             <widget class="QLabel" name="label_9">
+              <property name="text">
+               <string>Erfassungssystematik</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QComboBox" name="cbCommunicationSystematic">
+              <item>
+               <property name="text">
+                <string>Nicht erfassen</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>Unsystematisch</string>
+               </property>
+              </item>
+              <item>
+               <property name="text">
+                <string>TOP</string>
+               </property>
+              </item>
+             </widget>
+            </item>
+            <item>
+             <widget class="QLabel" name="label_10">
+              <property name="text">
+               <string>Beobachtungshinweise</string>
+              </property>
+             </widget>
+            </item>
+            <item>
+             <widget class="QTextEdit" name="edCommunicationHints"/>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabInteraction">
+           <attribute name="title">
+            <string>Interaktion</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_9">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_8">
+              <item>
+               <widget class="QLabel" name="label_11">
+                <property name="text">
+                 <string>Beobachtungssystematik</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="cbInteractionSystematic">
+                <item>
+                 <property name="text">
+                  <string>Nicht beobachten</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Unsystematisch</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_12">
+                <property name="text">
+                 <string>Beobachtungshinweise</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="edInteractionHints"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabActivities">
+           <attribute name="title">
+            <string>Tätigkeiten</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_11">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_10">
+              <item>
+               <widget class="QLabel" name="label_13">
+                <property name="text">
+                 <string>Beobachtungssystematik</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox">
+                <item>
+                 <property name="text">
+                  <string>Nicht erfassen</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Führungskreislauf / Kreisprozess</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Unsystematisch</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_14">
+                <property name="text">
+                 <string>Beobachtungsheinweise</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="edActivitiesHints"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+          <widget class="QWidget" name="tabActions">
+           <attribute name="title">
+            <string>Maßnahmen</string>
+           </attribute>
+           <layout class="QVBoxLayout" name="verticalLayout_13">
+            <item>
+             <layout class="QVBoxLayout" name="verticalLayout_12">
+              <item>
+               <widget class="QLabel" name="label_15">
+                <property name="text">
+                 <string>Beobachtungssystematik</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QComboBox" name="comboBox_2">
+                <item>
+                 <property name="text">
+                  <string>Nicht erfassen</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>TOP</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Führungskreislauf / Kreisprozess</string>
+                 </property>
+                </item>
+                <item>
+                 <property name="text">
+                  <string>Unsystematisch</string>
+                 </property>
+                </item>
+               </widget>
+              </item>
+              <item>
+               <widget class="QLabel" name="label_16">
+                <property name="text">
+                 <string>Beobachtungshinweise</string>
+                </property>
+               </widget>
+              </item>
+              <item>
+               <widget class="QTextEdit" name="edActionHints"/>
+              </item>
+             </layout>
+            </item>
+           </layout>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QGroupBox" name="groupBox_5">
+          <property name="title">
+           <string>(subjektive) allgemeine Eindrücke</string>
+          </property>
+          <layout class="QVBoxLayout" name="verticalLayout_14">
+           <item>
+            <widget class="QLabel" name="label_17">
+             <property name="text">
+              <string>Beobachtungshinweise</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QTextEdit" name="edSubjectiveHints"/>
+           </item>
+          </layout>
+         </widget>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QDialogButtonBox" name="btBox">
+       <property name="standardButtons">
+        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel</set>
+       </property>
+       <property name="centerButtons">
+        <bool>false</bool>
+       </property>
       </widget>
      </item>
     </layout>

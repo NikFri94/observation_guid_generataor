@@ -12,9 +12,51 @@
 
 #include <QString>
 #include <QDate>
+#include <QList>
 
 namespace OGG
 {
+	/*!
+	 * @brief This enum defines the different possible types of Observations
+	*/
+	enum ObservationTopic
+	{
+		OT_GENERAL_DESCRIPTION,
+		OT_COMMUNICATION,
+		OT_INTERACTION,
+		OT_ACTIVITIES,
+		OT_ACTIONS,
+		OT_SUBJECTIVE_OBSERVATIONS
+	};
+
+	/*!
+	 * @brief Thsi enum defines the differend methods for the documentation structure which are available
+	*/
+	enum ObservationDocumentationSystem
+	{
+		ODS_NONE,
+		ODS_TOP,
+		ODS_CIRCLE
+	};
+
+	/*!
+	 * @brief This struct represents one element which the observation can be focused on.
+	*/
+	struct ObservationDataField
+	{
+	public:
+		// Public constructor
+		ObservationDataField(ObservationTopic _topic,
+							ObservationDocumentationSystem _docSystem = ObservationDocumentationSystem::ODS_NONE,
+							QString _observationHints = QString());
+
+	public:
+		// Public members
+		ObservationTopic				topic;
+		ObservationDocumentationSystem	documentationSystem;
+		QString							observationHints;
+	};
+
 	/*!
 	 * @brief Class represents a basic observation
 	*/
@@ -79,6 +121,10 @@ namespace OGG
 			return this->m_isFieldObservation;
 		}
 
+		QList<ObservationDataField*>* getObservationModulesLstPtr() {
+			return this->m_lstObservationModules;
+		}
+
 	private:
 		QString m_projectName; //!< Name of the project in which context the observation takes place
 
@@ -93,5 +139,7 @@ namespace OGG
 		bool	m_isUndercover;		 //!< False if the observation is covered, true for open observations
 		bool	m_isSystematic;	 //!< True for systematic observations
 		bool	m_isFieldObservation; //!< True if this is a field observation, false for laboritory
+
+		QList<ObservationDataField*>* m_lstObservationModules = new QList<ObservationDataField*>();
 	};
 }

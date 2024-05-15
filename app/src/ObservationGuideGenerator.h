@@ -14,6 +14,7 @@
 #include <QDebug>
 
 #include "GUI/MainWindow.h"
+#include "ProjectSystem/Observation.h"
 
 namespace OGG
 {
@@ -38,7 +39,12 @@ namespace OGG
 		*/
 		~ObservationGuideGenerator();
 
+	public slots:
+		void createNewObservation(); //!< Slot for creating a new observation by using the NewObservation-Dialog
+
 	private:
 		MainWindow* m_MainWindow;	 //!< Applications Main-Window 
+
+		Observation* m_currentObservation = nullptr; //!< Currently used observation
 	};
 }

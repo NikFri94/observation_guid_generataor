@@ -11,6 +11,12 @@
 #include "Observation.h"
 
 namespace OGG {
+	// Implementation of the constructor for ObservationDataField
+	ObservationDataField::ObservationDataField(ObservationTopic _topic, ObservationDocumentationSystem _docSystem, QString _observationHints) :
+		topic(_topic), documentationSystem(_docSystem), observationHints(_observationHints)
+	{
+	}
+
 	/*!
 	 * @brief Implementation of the default initialisation constructor
 	*/
