@@ -39,9 +39,6 @@ namespace OGG
 		*/
 		~ObservationGuideGenerator();
 
-	public slots:
-		void createNewObservation(); //!< Slot for creating a new observation by using the NewObservation-Dialog
-
 	private:
 		MainWindow* m_MainWindow;	 //!< Applications Main-Window 
 

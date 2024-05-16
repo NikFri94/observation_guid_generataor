@@ -85,7 +85,8 @@ namespace OGG
 			bool _isParticipational = false,
 			bool _isUndercover = false,
 			bool _isSystematic = true,
-			bool _isFieldObservation = true);
+			bool _isFieldObservation = true,
+			bool _isInitialized=false);
 
 		/*
 		* Zugriffsmethoden
@@ -125,6 +126,13 @@ namespace OGG
 			return this->m_lstObservationModules;
 		}
 
+		void includeFreetext(bool _freetext) {
+			this->m_includeFreetext = _freetext;
+		}
+		bool hasFreetextIncluded() const {
+			return this->m_includeFreetext;
+		}
+
 	private:
 		QString m_projectName; //!< Name of the project in which context the observation takes place
 
@@ -140,6 +148,10 @@ namespace OGG
 		bool	m_isSystematic;	 //!< True for systematic observations
 		bool	m_isFieldObservation; //!< True if this is a field observation, false for laboritory
 
+		bool m_isInitialized; //!< Indiciates if this object is initialized
+
 		QList<ObservationDataField*>* m_lstObservationModules = new QList<ObservationDataField*>();
+
+		bool m_includeFreetext;
 	};
 }

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>919</width>
-    <height>669</height>
+    <height>694</height>
    </rect>
   </property>
   <property name="cursor">
@@ -445,23 +445,39 @@
           </widget>
          </widget>
         </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_5">
+       <property name="title">
+        <string>(subjektive) allgemeine Eindrücke</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_14">
         <item>
-         <widget class="QGroupBox" name="groupBox_5">
-          <property name="title">
-           <string>(subjektive) allgemeine Eindrücke</string>
+         <widget class="QLabel" name="label_17">
+          <property name="text">
+           <string>Beobachtungshinweise</string>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_14">
-           <item>
-            <widget class="QLabel" name="label_17">
-             <property name="text">
-              <string>Beobachtungshinweise</string>
-             </property>
-            </widget>
-           </item>
-           <item>
-            <widget class="QTextEdit" name="edSubjectiveHints"/>
-           </item>
-          </layout>
+         </widget>
+        </item>
+        <item>
+         <widget class="QTextEdit" name="edSubjectiveHints"/>
+        </item>
+       </layout>
+      </widget>
+     </item>
+     <item>
+      <widget class="QGroupBox" name="groupBox_6">
+       <property name="title">
+        <string>Freitextfeld</string>
+       </property>
+       <layout class="QVBoxLayout" name="verticalLayout_15">
+        <item>
+         <widget class="QCheckBox" name="cbFreeText">
+          <property name="text">
+           <string>Freitextfeld hinzufügen</string>
+          </property>
          </widget>
         </item>
        </layout>
@@ -490,8 +506,8 @@
    <slot>reject()</slot>
    <hints>
     <hint type="sourcelabel">
-     <x>291</x>
-     <y>634</y>
+     <x>755</x>
+     <y>658</y>
     </hint>
     <hint type="destinationlabel">
      <x>291</x>
