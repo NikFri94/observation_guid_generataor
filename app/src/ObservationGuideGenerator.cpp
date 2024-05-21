@@ -18,8 +18,8 @@ namespace OGG {
 		qInfo() << "Starting the application...";
 
 		// Initialize the main Window
-		this->m_MainWindow = new MainWindow();
-		this->m_MainWindow->show();
+		m_MainWindow = std::make_unique<MainWindow>();
+		m_MainWindow->show();
 	}
 
 	// Destrutcor implementation

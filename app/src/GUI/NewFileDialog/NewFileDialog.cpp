@@ -21,12 +21,4 @@ namespace OGG
 
 		qDebug() << "New File Dialog started successfully.";
 	}
-
-
-	bool NewFileDlg::getNewObservation(Observation* _data, bool _showModal)
-	{
-		this->
-
-		return false;
-	}
 }

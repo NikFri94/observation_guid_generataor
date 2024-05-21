@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <memory>
+
 #include <QString>
 #include <QDate>
 #include <QList>
@@ -122,8 +124,8 @@ namespace OGG
 			return this->m_isFieldObservation;
 		}
 
-		QList<ObservationDataField*>* getObservationModulesLstPtr() {
-			return this->m_lstObservationModules;
+		QList<ObservationDataField>* getObservationModulesLstPtr() {
+			return this->m_lstObservationModules.get();
 		}
 
 		void includeFreetext(bool _freetext) {
@@ -150,7 +152,7 @@ namespace OGG
 
 		bool m_isInitialized; //!< Indiciates if this object is initialized
 
-		QList<ObservationDataField*>* m_lstObservationModules = new QList<ObservationDataField*>();
+		std::unique_ptr<QList<ObservationDataField>> m_lstObservationModules;
 
 		bool m_includeFreetext;
 	};

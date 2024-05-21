@@ -486,7 +486,7 @@
      <item>
       <widget class="QDialogButtonBox" name="btBox">
        <property name="standardButtons">
-        <set>QDialogButtonBox::Apply|QDialogButtonBox::Cancel</set>
+        <set>QDialogButtonBox::Cancel|QDialogButtonBox::Ok</set>
        </property>
        <property name="centerButtons">
         <bool>false</bool>
@@ -498,22 +498,5 @@
   </layout>
  </widget>
  <resources/>
- <connections>
-  <connection>
-   <sender>btBox</sender>
-   <signal>rejected()</signal>
-   <receiver>NewFileDialog</receiver>
-   <slot>reject()</slot>
-   <hints>
-    <hint type="sourcelabel">
-     <x>755</x>
-     <y>658</y>
-    </hint>
-    <hint type="destinationlabel">
-     <x>291</x>
-     <y>334</y>
-    </hint>
-   </hints>
-  </connection>
- </connections>
+ <connections/>
 </ui>

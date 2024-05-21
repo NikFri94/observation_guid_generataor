@@ -23,6 +23,22 @@ namespace OGG
 		qDebug() << "MainWindow-Components successfully loaded.";
 	}
 
+	void MainWindow::NewFileDlgOnApply()
+	{
+		qDebug() << "APPLY";
+	}
+
+	/*!
+	 * @brief Slot for handling the cancel-event of the New-File-Dialog
+	*/
+	void MainWindow::NewFileDlgOnCancel()
+	{
+		qDebug() << "Cancel new file dialog.";
+		// Destroy the dialog object if initialized
+		if (m_NewFileDlg.get() != nullptr)
+			m_NewFileDlg.reset();
+	}
+
 	/*!
 	 * @brief Slot for Action "New File"
 	*/
@@ -31,8 +47,18 @@ namespace OGG
 		qDebug() << "actNewFile Triggered";
 
 		// Create and show "New File"-Dialog
-		NewFileDlg* dlg = new NewFileDlg(this);
-		dlg->setModal(true);
-		dlg->show();
+		m_NewFileDlg = std::make_unique<NewFileDlg>(this);
+		m_NewFileDlg->setModal(true);
+		m_NewFileDlg->show();
+
+		// Initialize Signal-Slot-connections
+		QDialogButtonBox* dlgBtBox = m_NewFileDlg->findChild<QDialogButtonBox*>(QString("btBox"), Qt::FindDirectChildrenOnly);
+
+		connect(dlgBtBox, SIGNAL(rejected()),
+			this, SLOT(NewFileDlgOnCancel()));
+		connect(dlgBtBox, SIGNAL(accepted()),
+			this, SLOT(NewFileDlgOnApply()));
+		connect(m_NewFileDlg.get(), SIGNAL(rejected()),
+			this, SLOT(NewFileDlgOnCancel()));
 	}
 }

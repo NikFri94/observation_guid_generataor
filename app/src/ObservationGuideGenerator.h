@@ -10,6 +10,8 @@
  */
 #pragma once
 
+#include <memory>
+
 #include <QApplication>
 #include <QDebug>
 
@@ -40,8 +42,10 @@ namespace OGG
 		~ObservationGuideGenerator();
 
 	private:
-		MainWindow* m_MainWindow;	 //!< Applications Main-Window 
+		std::unique_ptr<MainWindow> m_MainWindow;  //!< Applications main window
+		std::unique_ptr<Observation>	m_CurrentObservation; //!< Currently loaded observation
+		//MainWindow* m_MainWindow;	 //!< Applications Main-Window 
 
-		Observation* m_currentObservation = nullptr; //!< Currently used observation
+	//bservation* m_currentObservation = nullptr; //!< Currently used observation
 	};
 }
