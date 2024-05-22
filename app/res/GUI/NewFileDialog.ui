@@ -320,7 +320,7 @@
                <widget class="QComboBox" name="cbInteractionSystematic">
                 <item>
                  <property name="text">
-                  <string>Nicht beobachten</string>
+                  <string>Nicht erfassen</string>
                  </property>
                 </item>
                 <item>
@@ -359,7 +359,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox">
+               <widget class="QComboBox" name="cbActivities">
                 <item>
                  <property name="text">
                   <string>Nicht erfassen</string>
@@ -406,7 +406,7 @@
                </widget>
               </item>
               <item>
-               <widget class="QComboBox" name="comboBox_2">
+               <widget class="QComboBox" name="cbActions">
                 <item>
                  <property name="text">
                   <string>Nicht erfassen</string>

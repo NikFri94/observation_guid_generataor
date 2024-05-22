@@ -44,8 +44,5 @@ namespace OGG
 	private:
 		std::unique_ptr<MainWindow> m_MainWindow;  //!< Applications main window
 		std::unique_ptr<Observation>	m_CurrentObservation; //!< Currently loaded observation
-		//MainWindow* m_MainWindow;	 //!< Applications Main-Window 
-
-	//bservation* m_currentObservation = nullptr; //!< Currently used observation
 	};
 }

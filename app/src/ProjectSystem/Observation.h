@@ -88,7 +88,37 @@ namespace OGG
 			bool _isUndercover = false,
 			bool _isSystematic = true,
 			bool _isFieldObservation = true,
-			bool _isInitialized=false);
+			bool _isInitialized=true);
+
+		/*!
+		 * @brief Constructor for creating a unitialized Observation
+		*/
+		Observation();
+
+		/*!
+		 * @brief Initialize this observation object
+		 * @param _projectName 
+		 * @param _date 
+		 * @param _location 
+		 * @param _mainObjective 
+		 * @param _excluded 
+		 * @param _observationObjectDescription 
+		 * @param _isParticipational 
+		 * @param _isUndercover 
+		 * @param _isSystematic 
+		 * @param _isFieldObservation 
+		 * @return Returns true if the initialization was successfull
+		*/
+		bool Initialize(QString _projectName,
+			QDate _date,
+			QString _location,
+			QString _mainObjective,
+			QString _excluded,
+			QString _observationObjectDescription,
+			bool _isParticipational = false,
+			bool _isUndercover = false,
+			bool _isSystematic = true,
+			bool _isFieldObservation = true);
 
 		/*
 		* Zugriffsmethoden

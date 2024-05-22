@@ -14,6 +14,11 @@
 
 #include <QMainWindow>
 #include <QDialogButtonBox>
+#include <QLineEdit>
+#include <QDateEdit>
+#include <QTextEdit>
+#include <QCheckBox>
+#include <QComboBox>
 
 #include "../../res/GUI/ui_MainWindow.h"
 
@@ -32,6 +37,11 @@ namespace OGG
 		*/
 		MainWindow(QWidget* parent = nullptr);
 
+		inline void setCurrentObservationRef(Observation* pRef)
+		{
+			this->m_CurrentObservation = pRef;
+		}
+
 	private slots:
 		void newFile(); //!< Event handler for Menu->File->NewFile
 
@@ -39,6 +49,8 @@ namespace OGG
 		void NewFileDlgOnCancel(); //!< Slot for cancelling the new file dialog
 
 	private:
+		Observation* m_CurrentObservation; //!< Reference to the currently loaded Observation
+
 		Ui::MainWindow m_MainWindowGUI; //!< UI-Resource for MainWindow
 
 		// Dialogs

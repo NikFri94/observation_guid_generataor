@@ -20,6 +20,10 @@ namespace OGG {
 		// Initialize the main Window
 		m_MainWindow = std::make_unique<MainWindow>();
 		m_MainWindow->show();
+
+		// Create a new Observation
+		m_CurrentObservation = std::make_unique<Observation>();
+		m_MainWindow->setCurrentObservationRef(m_CurrentObservation.get());
 	}
 
 	// Destrutcor implementation
