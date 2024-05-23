@@ -38,6 +38,7 @@ find_package(Qt6
 	Core
 	Core5Compat
 	Widgets
+	PrintSupport
 	Test)
 
 # Erzeuge Einstellungen für qt-projekt

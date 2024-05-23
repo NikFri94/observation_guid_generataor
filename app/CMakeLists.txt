@@ -13,6 +13,7 @@ qt_add_executable(OGG_App
     src/GUI/MainWindow.cpp
     src/GUI/NewFileDialog/NewFileDialog.cpp
     src/ProjectSystem/Observation.cpp
+    src/ProjectSystem/BinaryObservationFile.cpp
     src/logging/loggingMessageHandler.cpp
 )
 
@@ -21,6 +22,7 @@ target_link_libraries(OGG_App
     PRIVATE
         Qt6::Core
         Qt6::Widgets
+        Qt6::PrintSupport
 )
 
 #add_dependencies(OGG_App)
