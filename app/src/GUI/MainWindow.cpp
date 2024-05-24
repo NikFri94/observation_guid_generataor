@@ -65,39 +65,71 @@ namespace OGG
 		qDebug() << QString("There are %1 Observation-Modules to be included.").arg(observationModuleCount);
 
 		// General observations
+		QTextTable* generalObservationTable;
+		bool bGeneralAsTOP = false;
 		for (int i = 0; i < observationModuleCount; i++)
 		{
 			if (m_CurrentObservation->getObservationModulesLstPtr()->at(i).topic == ObservationTopic::OT_GENERAL_DESCRIPTION)
 			{
 				if (m_CurrentObservation->getObservationModulesLstPtr()->at(i).documentationSystem == ObservationDocumentationSystem::ODS_TOP)
 				{
+					bGeneralAsTOP = true;
 					qDebug() << "General observations need to be documented in TOP-System.";
 
-					QTextTable* generalObservationTable = cursor.insertTable(4, 3);
+					generalObservationTable = cursor.insertTable(5, 3);
 					cursor.insertHtml(QString("Kategorie"));
 					cursor = generalObservationTable->cellAt(0, 1).firstCursorPosition();
 					cursor.insertHtml(QString("Allgemeine Beschreibung vor Ort (<b>objektiv</b>)"));
+
 					cursor = generalObservationTable->cellAt(0, 2).firstCursorPosition();
 					cursor.insertHtml(QString("Allgemeine Eindr&uuml;cke (<b>subjektiv</b>"));
-					cursor = generalObservationTable->cellAt(1, 0).firstCursorPosition();
-					cursor.insertHtml(QString("Technische"));
+
 					cursor = generalObservationTable->cellAt(2, 0).firstCursorPosition();
-					cursor.insertHtml(QString("Organisatorisch"));
+					cursor.insertHtml(QString("Technische"));
 					cursor = generalObservationTable->cellAt(3, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Organisatorisch"));
+					cursor = generalObservationTable->cellAt(4, 0).firstCursorPosition();
 					cursor.insertHtml(QString("Personell"));
-					generalObservationTable->mergeCells(1, 2, 3, 1);
+					generalObservationTable->mergeCells(2, 2, 3, 1);
+					generalObservationTable->mergeCells(0, 0, 2, 1);
 				}
 				else
 				{
 					qDebug() << "General observations need to be documented without TOP-System.";
 
-					QTextTable* generalObservationTable = cursor.insertTable(2,2);
+					generalObservationTable = cursor.insertTable(3, 2);
 					cursor = generalObservationTable->cellAt(0, 0).firstCursorPosition();
 					cursor.insertHtml(QString("Allgemeine Beschreibung vor Ort (<b>objektiv</b>)"));
 					cursor = generalObservationTable->cellAt(0, 1).firstCursorPosition();
 					cursor.insertHtml(QString("Allgemeine Eindr&uuml;cke (<b>subjektiv</b>)"));
 				}
 			}
+
+			// Add Hints
+			switch (m_CurrentObservation->getObservationModulesLstPtr()->at(i).topic)
+			{
+			case ObservationTopic::OT_GENERAL_DESCRIPTION:
+				if (bGeneralAsTOP)
+				{
+					cursor = generalObservationTable->cellAt(1, 1).firstCursorPosition();
+				}
+				else
+				{
+					cursor = generalObservationTable->cellAt(1, 0).firstCursorPosition();
+				}
+				break;
+			case ObservationTopic::OT_SUBJECTIVE_OBSERVATIONS:
+				if (bGeneralAsTOP)
+				{
+					cursor = generalObservationTable->cellAt(1, 2).firstCursorPosition();
+				}
+				else
+				{
+					cursor = generalObservationTable->cellAt(1, 1).firstCursorPosition();
+				}
+				break;
+			}
+			cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 		}
 
 		cursor.movePosition(QTextCursor::End);
@@ -246,6 +278,11 @@ namespace OGG
 		pdfPrinter.setPageSize(QPageSize::A4);
 		pdfPrinter.setPageOrientation(QPageLayout::Landscape);
 		pdfPrinter.setOutputFileName("test.pdf");
+
+		doc->setPageSize(pdfPrinter.pageRect(QPrinter::Didot).size());
+
+		// Set default font
+		doc->setDefaultFont(QFont(QString("Arial"), 12));
 
 		doc->print(&pdfPrinter);
 	}
