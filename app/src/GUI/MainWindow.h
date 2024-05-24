@@ -26,6 +26,7 @@
 #include <QTextCursor>
 #include <QTextTable>
 #include <QTextDocumentWriter>
+#include <QTextTableFormat>
 #include <QDate>
 #include <QPrinter>
 #include <QAbstractTextDocumentLayout>

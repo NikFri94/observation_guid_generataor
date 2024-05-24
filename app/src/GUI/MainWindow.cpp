@@ -23,6 +23,10 @@ namespace OGG
 		// Initialize other fields
 		m_CurrentObservation = nullptr;
 
+		// Try to set css stylesheet
+		QTextEdit* edCentralDocument = this->findChild<QTextEdit*>(QString("edCentralDocument"));
+		//edCentralDocument->setStyleSheet();
+
 		qDebug() << "MainWindow-Components successfully loaded.";
 	}
 
@@ -47,7 +51,13 @@ namespace OGG
 
 		QTextCursor cursor(doc);
 
-		cursor.insertTable(1, 5);
+		QTextTable* generalInfoTbl = cursor.insertTable(1, 5);
+		QTextTableFormat tableBaseFormat;
+		tableBaseFormat.setWidth(QTextLength(QTextLength::PercentageLength, 100));
+		tableBaseFormat.setBorderCollapse(true);
+		tableBaseFormat.setBorderStyle(QTextFrameFormat::BorderStyle_Solid);
+		generalInfoTbl->setFormat(tableBaseFormat);
+
 		cursor.insertHtml(QString("Projekt:<br>%1").arg(m_CurrentObservation->getProjectName()));
 		cursor.movePosition(QTextCursor::NextCell);
 		cursor.insertHtml(QString("Datum:<br>%1").arg(m_CurrentObservation->getDate().toString(QString("dd.MM.yyyy"))));
@@ -82,7 +92,7 @@ namespace OGG
 					cursor.insertHtml(QString("Allgemeine Beschreibung vor Ort (<b>objektiv</b>)"));
 
 					cursor = generalObservationTable->cellAt(0, 2).firstCursorPosition();
-					cursor.insertHtml(QString("Allgemeine Eindr&uuml;cke (<b>subjektiv</b>"));
+					cursor.insertHtml(QString("Allgemeine Eindr&uuml;cke (<b>subjektiv</b>)"));
 
 					cursor = generalObservationTable->cellAt(2, 0).firstCursorPosition();
 					cursor.insertHtml(QString("Technische"));
@@ -131,6 +141,8 @@ namespace OGG
 			}
 			cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 		}
+
+		generalObservationTable->setFormat(tableBaseFormat);
 
 		cursor.movePosition(QTextCursor::End);
 		cursor.insertBlock();
@@ -211,7 +223,7 @@ namespace OGG
 					cursor.insertHtml(QString("Beurteilung"));
 
 					cursor = specialObservationsTbl->cellAt(4, 0).firstCursorPosition();
-					cursor.insertHtml(QString("Éntscheidungs-<br>findung"));
+					cursor.insertHtml(QString("Entscheidungs-<br>findung"));
 
 					cursor = specialObservationsTbl->cellAt(5, 0).firstCursorPosition();
 					cursor.insertHtml(QString("Umsetzung /<br>Ausf&uuml;hrung"));
@@ -248,7 +260,12 @@ namespace OGG
 					cursor.insertHtml(QString("Ma&szlig;nahmen"));
 					break;
 				}
+
+				cursor = specialObservationsTbl->cellAt(1, i).firstCursorPosition();
+				cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 			}
+
+			specialObservationsTbl->setFormat(tableBaseFormat);
 		}
 
 		qDebug() << "Parsing finished.";
@@ -301,11 +318,14 @@ namespace OGG
 		/*!
 		* @todo Propper Implementation
 		*/
-		QTextDocumentWriter writer(QString("test.odf"), "ODF");
+		QString filename = QFileDialog::getSaveFileName(this,
+			QString("Datei exportieren (ODF)"),
+			QDir::currentPath(),
+			"*.odf");
+
+		//QTextDocumentWriter writer(QString("test.odf"), "ODF");
+		QTextDocumentWriter writer(filename, "ODF");
 		writer.write(this->findChild<QTextEdit*>(QString("edCentralDocument"))->document());
-		
-		QTextDocumentWriter pdfWriter(QString("test2.pdf"), "PDF");
-		pdfWriter.write(this->findChild<QTextEdit*>(QString("edCentralDocument"))->document());
 	}
 
 	void MainWindow::NewFileDlgOnApply()
