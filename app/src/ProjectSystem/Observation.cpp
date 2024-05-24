@@ -84,6 +84,9 @@ namespace OGG {
 
 		m_isInitialized = true;
 
+		// Clear the Observation Category list
+		m_lstObservationModules->clear();
+
 
 		// Debug-Log-Output
 		qDebug() << "Initialized observation:";

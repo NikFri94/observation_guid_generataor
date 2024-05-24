@@ -139,23 +139,83 @@ namespace OGG
 
 		if (observationModuleCount > 2)
 		{
+			QTextTable* specialObservationsTbl;
+
 			if ((specialDocumentationSystemCounter == 1))
 			{
 				// There is one special documentation system which needs to be considered
 				if (docSystemLst.contains(ObservationDocumentationSystem::ODS_TOP))
 				{
-					cursor.insertTable(5, observationModuleCount - 1);
+					specialObservationsTbl =  cursor.insertTable(5, observationModuleCount - 1);
+
+					// Insert TOP-System
+					cursor = specialObservationsTbl->cellAt(0, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Kategorie"));
+
+					cursor = specialObservationsTbl->cellAt(2, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Technisch"));
+
+					cursor = specialObservationsTbl->cellAt(3, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Organisatorisch"));
+
+					cursor = specialObservationsTbl->cellAt(4, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Personell"));
+
+					specialObservationsTbl->mergeCells(0, 0, 2, 1);
 				}
 				else
 				{
 					// Use PDCA-System
-					cursor.insertTable(6, observationModuleCount - 1);
+					specialObservationsTbl = cursor.insertTable(6, observationModuleCount - 1);
+
+					// Insert PDCA-System
+					cursor = specialObservationsTbl->cellAt(0, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Kategorie"));
+
+					cursor = specialObservationsTbl->cellAt(2, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Informations-<br>beschaffung"));
+
+					cursor = specialObservationsTbl->cellAt(3, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Beurteilung"));
+
+					cursor = specialObservationsTbl->cellAt(4, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Éntscheidungs-<br>findung"));
+
+					cursor = specialObservationsTbl->cellAt(5, 0).firstCursorPosition();
+					cursor.insertHtml(QString("Umsetzung /<br>Ausf&uuml;hrung"));
+
+					specialObservationsTbl->mergeCells(0, 0, 2, 1);
 				}
 			}
 			else
 			{
 				// Do not use any documentation system
-				cursor.insertTable(3, observationModuleCount - 1);
+				specialObservationsTbl = cursor.insertTable(3, observationModuleCount - 1);
+			}
+
+			// Insert Categories
+			for (int i = (observationModuleCount-2); i > 0; i--)
+			{
+				cursor = specialObservationsTbl->cellAt(0, i).firstCursorPosition();
+				
+				switch (m_CurrentObservation->getObservationModulesLstPtr()->at(i).topic)
+				{
+				case ObservationTopic::OT_COMMUNICATION:
+					cursor.insertHtml(QString("Kommunikation"));
+					break;
+
+				case ObservationTopic::OT_INTERACTION:
+					cursor.insertHtml(QString("Interaktion"));
+					break;
+
+				case ObservationTopic::OT_ACTIVITIES:
+					cursor.insertHtml(QString("Aktivit&auml;ten"));
+					break;
+
+				case ObservationTopic::OT_ACTIONS:
+					cursor.insertHtml(QString("Ma&szlig;nahmen"));
+					break;
+				}
 			}
 		}
 
@@ -319,7 +379,7 @@ namespace OGG
 
 		// Activities
 		QComboBox* cbActivities = m_NewFileDlg->findChild<QComboBox*>(QString("cbActivities"));
-		if (cbCommunicationSystematic->currentText() != QString("Nicht erfassen"))
+		if (cbActivities->currentText() != QString("Nicht erfassen"))
 		{
 			ObservationDocumentationSystem odsActivities;
 			if (cbActivities->currentText() == QString("Kreisprozess"))
