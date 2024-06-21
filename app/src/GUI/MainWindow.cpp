@@ -127,6 +127,7 @@ namespace OGG
 				{
 					cursor = generalObservationTable->cellAt(1, 0).firstCursorPosition();
 				}
+				cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 				break;
 			case ObservationTopic::OT_SUBJECTIVE_OBSERVATIONS:
 				if (bGeneralAsTOP)
@@ -137,9 +138,10 @@ namespace OGG
 				{
 					cursor = generalObservationTable->cellAt(1, 1).firstCursorPosition();
 				}
+				cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 				break;
+
 			}
-			cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 		}
 
 		generalObservationTable->setFormat(tableBaseFormat);
@@ -238,31 +240,37 @@ namespace OGG
 			}
 
 			// Insert Categories
-			for (int i = (observationModuleCount-2); i > 0; i--)
+			int iCursorCol = observationModuleCount - 2;
+			for(int i= observationModuleCount-1; i>=0;i--)
 			{
-				cursor = specialObservationsTbl->cellAt(0, i).firstCursorPosition();
-				
+				cursor = specialObservationsTbl->cellAt(0, iCursorCol).firstCursorPosition();
+
 				switch (m_CurrentObservation->getObservationModulesLstPtr()->at(i).topic)
 				{
 				case ObservationTopic::OT_COMMUNICATION:
 					cursor.insertHtml(QString("Kommunikation"));
+					cursor = specialObservationsTbl->cellAt(1, iCursorCol).firstCursorPosition();
+					cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 					break;
 
 				case ObservationTopic::OT_INTERACTION:
 					cursor.insertHtml(QString("Interaktion"));
+					cursor = specialObservationsTbl->cellAt(1, iCursorCol).firstCursorPosition();
+					cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 					break;
 
 				case ObservationTopic::OT_ACTIVITIES:
 					cursor.insertHtml(QString("Aktivit&auml;ten"));
+					cursor = specialObservationsTbl->cellAt(1, iCursorCol).firstCursorPosition();
+					cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 					break;
 
 				case ObservationTopic::OT_ACTIONS:
 					cursor.insertHtml(QString("Ma&szlig;nahmen"));
+					cursor = specialObservationsTbl->cellAt(1, iCursorCol).firstCursorPosition();
+					cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 					break;
 				}
-
-				cursor = specialObservationsTbl->cellAt(1, i).firstCursorPosition();
-				cursor.insertHtml(QString("%1").arg(m_CurrentObservation->getObservationModulesLstPtr()->at(i).observationHints));
 			}
 
 			specialObservationsTbl->setFormat(tableBaseFormat);
